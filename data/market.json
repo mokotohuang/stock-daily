@@ -1,58 +1,58 @@
 {
-  "date": "2026/08/07",
+  "date": "2026/08/20",
   "market": {
-    "close": 44225.91,
-    "change": -170.79,
-    "changePct": -0.38,
-    "turnover": 7961.22593733,
-    "advances": 497,
-    "declines": 509,
-    "limitDown": 3
+    "close": 44933.74,
+    "change": 214.39,
+    "changePct": 0.48,
+    "turnover": 7862.03391377,
+    "advances": 778,
+    "declines": 228,
+    "limitDown": 0
   },
   "institutions": {
-    "foreign": -407.1574379,
-    "trust": -12.01721402,
-    "dealer": -9.68071874,
-    "total": -428.85537066
+    "foreign": 73.17634368,
+    "trust": -20.47675577,
+    "dealer": -61.08210297,
+    "total": -8.38251506
   },
   "margin": {
-    "balance": 5376.6451,
-    "change": 48.595289999999295,
-    "changePct": 0.9120652346153515
+    "balance": 5484.07625,
+    "change": 2.1738699999996243,
+    "changePct": 0.03965539422830116
   },
   "indices": [
     {
       "name": "S&P 500",
       "code": "SPX",
-      "close": 7730.87,
-      "pointChange": 20.909999999999854,
-      "change": 0.2712076327244221,
+      "close": 7641.16,
+      "pointChange": -66.81999999999971,
+      "change": -0.8668937905910461,
       "note": "美國大盤風險偏好"
     },
     {
       "name": "NASDAQ",
       "code": "IXIC",
-      "close": 26527.514,
-      "pointChange": 179.16400000000067,
-      "change": 0.6799818584465467,
+      "close": 26067.166,
+      "pointChange": -263.92399999999907,
+      "change": -1.0023284262064316,
       "note": "科技與 AI 風險偏好"
     },
     {
       "name": "Dow Jones",
       "code": "DJI",
-      "close": 53978.42,
-      "pointChange": 93.31999999999971,
-      "change": 0.1731833104141956,
+      "close": 52759.21,
+      "pointChange": -703.8400000000038,
+      "change": -1.3164980299477933,
       "note": "大型價值與景氣股"
     },
     {
       "name": "SOX 費半",
       "code": "SOX",
-      "close": 12169.274,
-      "pointChange": 120.58399999999892,
-      "change": 1.0008058967406326,
+      "close": 11800.019,
+      "pointChange": 61.78900000000067,
+      "change": 0.5263911168890085,
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-07T14:05:57.123Z"
+  "fetchedAt": "2026-08-21T02:38:27.470Z"
 }
