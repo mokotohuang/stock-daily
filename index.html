@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-  <script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260821-2">
+  <script src="app.js?v=20260821-2" defer></script>
 </head>
 <body>
   <main>
@@ -59,9 +59,17 @@
         <article class="live-panel">
           <div class="live-heading">
             <div><p>今日加權指數</p><small>按「重新讀取」會重新載入當日漲跌</small></div>
-            <span>TWSE:IX0001</span>
+            <span>^TWII</span>
           </div>
-          <div class="chart-shell chart-shell-index" id="taiex-live" aria-label="今日加權指數行情"></div>
+          <div class="live-index-summary">
+            <strong id="live-index-price">—</strong>
+            <span id="live-index-change">等待盤中資料</span>
+          </div>
+          <p class="live-index-time" id="live-index-time">最後行情時間：—</p>
+          <div class="chart-shell chart-shell-index" id="taiex-live" aria-label="今日加權指數行情">
+            <canvas id="taiex-chart" aria-label="加權指數當日走勢圖"></canvas>
+          </div>
+          <p class="stock-error" id="live-index-error" hidden></p>
         </article>
         <article class="live-panel">
           <div class="live-heading stock-heading">
