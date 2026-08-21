@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="每日整理台股法人籌碼、融資、市場廣度與美股四大指數。">
+  <title>籌碼日報｜台股每日判讀台</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <div class="topline"><span class="brand">籌碼日報</span><span>每日收盤後自動更新</span></div>
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">TODAY'S MARKET VERDICT</p>
+          <h1 id="verdict">正在取得最新資料</h1>
+          <p class="intro">把當日價格、法人、融資與美股數字組合成今日市場判讀，直接呈現數據及其代表意義。</p>
+        </div>
+        <aside class="outlook-card">
+          <p>台股資料日期</p>
+          <strong id="market-date">—</strong>
+          <span class="dot green" id="data-status">正在讀取資料</span>
+          <small id="updated-at">資料以交易所公布的最近交易日為準。</small>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container verdict-section">
+      <div class="section-title">
+        <div><p class="eyebrow">01 / RESULT</p><h2>今日結果與理由</h2></div>
+        <button class="refresh" id="refresh" type="button">重新讀取</button>
+      </div>
+      <p class="error-note" id="error" hidden></p>
+      <div class="analysis-list" id="analysis-list">
+        <article><b>—</b><p>資料載入後，這裡會直接顯示今日結論及形成原因。</p></article>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="section-title">
+        <div><p class="eyebrow">02 / TAIWAN CLOSE</p><h2>台股今日關鍵數據</h2></div>
+        <span class="caption">單位：億元；指數除外</span>
+      </div>
+      <div class="data-grid" id="tw-cards"></div>
+      <div class="breadth" id="breadth">上漲 <b>—</b> 家　下跌 <b>—</b> 家　跌停 <b>—</b> 家</div>
+    </section>
+
+    <section class="container summary">
+      <div class="section-title">
+        <div><p class="eyebrow">03 / US CLOSE</p><h2>美股四大指數</h2></div>
+        <span class="caption">最近交易日收盤</span>
+      </div>
+      <div class="index-grid" id="us-cards"></div>
+    </section>
+
+    <footer>資料來源：臺灣證券交易所公開資訊、Yahoo Finance。內容為市場觀察，不構成個別投資建議。</footer>
+  </main>
+</body>
+</html>
