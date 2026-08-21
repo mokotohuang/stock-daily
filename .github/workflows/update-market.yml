@@ -6,6 +6,8 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "30 8 * * 1-5"
+    - cron: "50 11 * * 1-5"
+    - cron: "10 13 * * 1-5"
     - cron: "30 22 * * 1-5"
 
 permissions:
@@ -54,3 +56,4 @@ jobs:
       - name: 發佈網站
         id: deployment
         uses: actions/deploy-pages@v4
+
