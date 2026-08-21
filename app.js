@@ -13,7 +13,9 @@ function metaLine(data, key) {
   const acquired = meta.fetchedAt
     ? new Date(meta.fetchedAt).toLocaleString("zh-TW", { timeZone: "Asia/Taipei", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hour12: false })
     : "—";
-  const stale = meta.dataDate && data.date && meta.dataDate !== data.date;
+  const sourceDate = String(meta.dataDate ?? "").replace(/\D/g, "");
+  const marketDate = String(data.date ?? "").replace(/\D/g, "");
+  const stale = sourceDate && marketDate && sourceDate < marketDate;
   return `<span class="data-meta${stale ? " stale" : ""}">資料日 ${escapeHtml(meta.dataDate ?? "—")} · 取得 ${escapeHtml(acquired)}${stale ? " · 沿用舊值" : ""}</span>`;
 }
 
