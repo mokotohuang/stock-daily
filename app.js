@@ -39,7 +39,7 @@ function makeAnalysis(data) {
 }
 
 function dataCard(label, value, sub, valueTone, meta) {
-  return `<article class="data-card"><p>${label}</p><strong class="${valueTone ?? ""}">${value}</strong><small>${sub}</small>${meta}</article>`;
+  return `<article class="data-card"><p>${label}</p><div class="data-value-row"><strong class="${valueTone ?? ""}">${value}</strong>${meta}</div><small>${sub}</small></article>`;
 }
 
 function render(data) {
@@ -81,11 +81,68 @@ function mountTradingView(containerId, scriptName, config) {
   container.appendChild(widget);
 }
 
-function renderMarketWidget() {
-  mountTradingView("taiex-live", "embed-widget-mini-symbol-overview.js", {
-    symbol: "TWSE:IX0001", width: "100%", height: "100%", locale: "zh_TW", dateRange: "1D",
-    colorTheme: "light", isTransparent: true, autosize: true, largeChartUrl: ""
-  });
+function drawIntradayChart(points) {
+  const canvas = byId("taiex-chart");
+  const width = Math.max(canvas.clientWidth, 280);
+  const height = Math.max(canvas.clientHeight, 210);
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = Math.round(width * ratio);
+  canvas.height = Math.round(height * ratio);
+  const context = canvas.getContext("2d");
+  context.scale(ratio, ratio);
+  context.clearRect(0, 0, width, height);
+  if (!points?.length) return;
+  const values = points.map((point) => point.value);
+  const low = Math.min(...values);
+  const high = Math.max(...values);
+  const spread = Math.max(high - low, 1);
+  const pad = { top: 18, right: 14, bottom: 24, left: 14 };
+  const x = (index) => pad.left + index / Math.max(points.length - 1, 1) * (width - pad.left - pad.right);
+  const y = (value) => pad.top + (high - value) / spread * (height - pad.top - pad.bottom);
+  context.strokeStyle = "#d8d7ce";
+  context.lineWidth = 1;
+  for (let row = 0; row < 4; row += 1) {
+    const gridY = pad.top + row / 3 * (height - pad.top - pad.bottom);
+    context.beginPath(); context.moveTo(pad.left, gridY); context.lineTo(width - pad.right, gridY); context.stroke();
+  }
+  const rising = values.at(-1) >= values[0];
+  const lineColor = rising ? "#167461" : "#db5a42";
+  const gradient = context.createLinearGradient(0, pad.top, 0, height - pad.bottom);
+  gradient.addColorStop(0, rising ? "rgba(22,116,97,.25)" : "rgba(219,90,66,.25)");
+  gradient.addColorStop(1, "rgba(255,255,255,0)");
+  context.beginPath();
+  points.forEach((point, index) => index ? context.lineTo(x(index), y(point.value)) : context.moveTo(x(index), y(point.value)));
+  context.lineTo(x(points.length - 1), height - pad.bottom); context.lineTo(x(0), height - pad.bottom); context.closePath();
+  context.fillStyle = gradient; context.fill();
+  context.beginPath();
+  points.forEach((point, index) => index ? context.lineTo(x(index), y(point.value)) : context.moveTo(x(index), y(point.value)));
+  context.strokeStyle = lineColor; context.lineWidth = 2; context.stroke();
+  context.fillStyle = "#66716b"; context.font = '11px "DM Mono", monospace';
+  context.fillText(number(low, 0), pad.left, height - 6);
+  const highText = number(high, 0); context.fillText(highText, width - pad.right - context.measureText(highText).width, 12);
+}
+
+async function loadIntraday() {
+  const error = byId("live-index-error");
+  error.hidden = true;
+  try {
+    const response = await fetch(`data/intraday.json?v=${Date.now()}`, { cache: "no-store" });
+    if (!response.ok) throw new Error("盤中資料檔尚未建立");
+    const data = await response.json();
+    if (data.price == null || !data.points?.length) throw new Error("盤中資料尚未取得");
+    byId("live-index-price").textContent = number(data.price, 2);
+    byId("live-index-change").textContent = `${signed(data.change, " 點")}｜${signed(data.changePct, "%")}`;
+    byId("live-index-change").className = tone(data.change);
+    const quoteTime = data.quoteTime ? new Date(data.quoteTime).toLocaleString("zh-TW", { timeZone: "Asia/Taipei", hour12: false }) : "—";
+    byId("live-index-time").textContent = `最後行情時間：${quoteTime}｜約每 10 分鐘更新`;
+    drawIntradayChart(data.points);
+  } catch (reason) {
+    byId("live-index-price").textContent = "—";
+    byId("live-index-change").textContent = "暫無可用盤中資料";
+    error.textContent = `${reason instanceof Error ? reason.message : "讀取失敗"}；日結數值仍保留於上方 02 區。`;
+    error.hidden = false;
+    drawIntradayChart([]);
+  }
 }
 
 function renderStockWidget() {
@@ -107,7 +164,7 @@ function renderStockWidget() {
 }
 
 function renderLiveWidgets() {
-  renderMarketWidget();
+  loadIntraday();
   renderStockWidget();
 }
 
