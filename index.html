@@ -50,9 +50,38 @@
       <div class="breadth" id="breadth">上漲 <b>—</b> 家　下跌 <b>—</b> 家　跌停 <b>—</b> 家</div>
     </section>
 
+    <section class="container live-section">
+      <div class="section-title">
+        <div><p class="eyebrow">03 / LIVE WATCH</p><h2>盤中即時觀察</h2></div>
+        <span class="caption">盤中行情可能延遲，依資料供應狀態為準</span>
+      </div>
+      <div class="live-grid">
+        <article class="live-panel">
+          <div class="live-heading">
+            <div><p>今日加權指數</p><small>按「重新讀取」會重新載入當日漲跌</small></div>
+            <span>TWSE:IX0001</span>
+          </div>
+          <div class="chart-shell chart-shell-index" id="taiex-live" aria-label="今日加權指數行情"></div>
+        </article>
+        <article class="live-panel">
+          <div class="live-heading stock-heading">
+            <div><p>個股當日走勢</p><small>請選市場並輸入股票代碼</small></div>
+            <form class="stock-form" id="stock-form">
+              <label><span class="sr-only">交易市場</span><select id="stock-market" aria-label="交易市場"><option value="TWSE">上市</option><option value="TPEX" selected>上櫃</option></select></label>
+              <label><span class="sr-only">股票代碼</span><input id="stock-code" inputmode="numeric" value="6147" maxlength="10" aria-label="股票代碼" placeholder="例如 6147"></label>
+              <button type="submit">查看走勢</button>
+            </form>
+          </div>
+          <p class="stock-error" id="stock-error" hidden></p>
+          <div class="chart-shell" id="stock-chart" aria-label="個股當日走勢圖"></div>
+        </article>
+      </div>
+      <p class="live-note">盤中圖表由 TradingView 提供，可能為即時或延遲行情；正式收盤結果仍以臺灣證券交易所／櫃買中心公布資料為準。</p>
+    </section>
+
     <section class="container summary">
       <div class="section-title">
-        <div><p class="eyebrow">03 / US CLOSE</p><h2>美股四大指數</h2></div>
+        <div><p class="eyebrow">04 / US CLOSE</p><h2>美股四大指數</h2></div>
         <span class="caption">最近交易日收盤</span>
       </div>
       <div class="index-grid" id="us-cards"></div>
@@ -62,3 +91,4 @@
   </main>
 </body>
 </html>
+
