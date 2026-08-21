@@ -54,11 +54,11 @@
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-21T12:15:06.354Z",
+  "fetchedAt": "2026-08-21T12:18:17.365Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/08/21",
-      "fetchedAt": "2026-08-21T12:15:05.858Z"
+      "fetchedAt": "2026-08-21T12:18:16.778Z"
     },
     "margin": {
       "dataDate": "2026/08/20",
@@ -70,7 +70,7 @@
     },
     "market": {
       "dataDate": "2026/08/21",
-      "fetchedAt": "2026-08-21T12:15:05.347Z"
+      "fetchedAt": "2026-08-21T12:18:16.639Z"
     }
   }
 }
