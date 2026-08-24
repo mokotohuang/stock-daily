@@ -4,16 +4,16 @@
     "close": 44762.32,
     "change": -461.97,
     "changePct": -1.02,
-    "turnover": 6098.02118121,
+    "turnover": 6141.78004373,
     "advances": 319,
     "declines": 637,
     "limitDown": 4
   },
   "institutions": {
-    "foreign": -157.50846327,
-    "trust": 37.05471541,
+    "foreign": -157.36131327,
+    "trust": 30.54816594,
     "dealer": -43.32592182,
-    "total": -163.77966968
+    "total": -170.13906915
   },
   "margin": {
     "balance": 5469.39322,
@@ -54,11 +54,11 @@
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-24T09:10:11.205Z",
+  "fetchedAt": "2026-08-24T12:15:55.871Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/08/24",
-      "fetchedAt": "2026-08-24T09:10:10.029Z"
+      "fetchedAt": "2026-08-24T12:15:55.124Z"
     },
     "margin": {
       "dataDate": "2026/08/21",
@@ -70,7 +70,7 @@
     },
     "market": {
       "dataDate": "2026/08/24",
-      "fetchedAt": "2026-08-24T09:10:09.855Z"
+      "fetchedAt": "2026-08-24T12:15:54.984Z"
     }
   }
 }
