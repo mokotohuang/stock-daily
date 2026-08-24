@@ -25,12 +25,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: 下載網站內容
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: 設定 Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: "20"
+          node-version: "24"
+          package-manager-cache: false
 
       - name: 取得盤中加權指數
         run: node scripts/update-intraday.mjs
@@ -40,8 +44,23 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/intraday.json
-          git diff --cached --quiet || git commit -m "Update intraday market data [skip ci]"
-          git push
+          if git diff --cached --quiet; then
+            echo "盤中資料沒有變更"
+          else
+            git commit -m "Update intraday market data [skip ci]"
+            for attempt in 1 2 3; do
+              git fetch origin main
+              git rebase origin/main
+              if git push origin HEAD:main; then
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                echo "同步最新版本後仍無法推送"
+                exit 1
+              fi
+              sleep $((attempt * 2))
+            done
+          fi
 
       - name: 設定 GitHub Pages
         uses: actions/configure-pages@v5
