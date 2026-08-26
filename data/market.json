@@ -16,61 +16,61 @@
     "total": 579.12721035
   },
   "margin": {
-    "balance": 5469.37698,
-    "change": 16.7811099999999,
-    "changePct": 0.30776368540953136
+    "balance": 5548.02585,
+    "change": 78.64886999999999,
+    "changePct": 1.437985903835065
   },
   "indices": [
     {
       "name": "S&P 500",
       "code": "SPX",
-      "close": 7674.96,
-      "pointChange": 22.100000000000364,
-      "change": 0.2887809263464948,
+      "close": 7686.64,
+      "pointChange": 9.360000000000582,
+      "change": 0.12191817935519589,
       "note": "美國大盤風險偏好"
     },
     {
       "name": "NASDAQ",
       "code": "IXIC",
-      "close": 26160.799,
-      "pointChange": 180.60900000000038,
-      "change": 0.6951796734358001,
+      "close": 26173.355,
+      "pointChange": 22.05500000000029,
+      "change": 0.08433615154887249,
       "note": "科技與 AI 風險偏好"
     },
     {
       "name": "Dow Jones",
       "code": "DJI",
-      "close": 53433.77,
-      "pointChange": 16.609999999993306,
-      "change": 0.03109487662764794,
+      "close": 53594.69,
+      "pointChange": 17.290000000000873,
+      "change": 0.03227106951811934,
       "note": "大型價值與景氣股"
     },
     {
       "name": "SOX 費半",
       "code": "SOX",
-      "close": 11629.104,
-      "pointChange": 205.9339999999993,
-      "change": 1.8027745363152197,
+      "close": 11598.453,
+      "pointChange": 10.412999999998647,
+      "change": 0.08985989002453086,
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-26T12:18:21.212Z",
+  "fetchedAt": "2026-08-26T14:00:08.757Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/08/26",
-      "fetchedAt": "2026-08-26T12:18:20.749Z"
+      "fetchedAt": "2026-08-26T14:00:08.453Z"
     },
     "margin": {
-      "dataDate": "2026/08/25",
-      "fetchedAt": "2026-08-25T13:57:57.928Z"
+      "dataDate": "2026/08/26",
+      "fetchedAt": "2026-08-26T14:00:08.618Z"
     },
     "us": {
-      "dataDate": "2026/08/25",
-      "fetchedAt": "2026-08-25T13:57:58.137Z"
+      "dataDate": "2026/08/26",
+      "fetchedAt": "2026-08-26T14:00:08.757Z"
     },
     "market": {
       "dataDate": "2026/08/26",
-      "fetchedAt": "2026-08-26T12:18:20.567Z"
+      "fetchedAt": "2026-08-26T14:00:08.026Z"
     }
   }
 }
