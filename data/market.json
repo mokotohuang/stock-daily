@@ -1,19 +1,19 @@
 {
-  "date": "2026/08/25",
+  "date": "2026/08/26",
   "market": {
-    "close": 45169.46,
-    "change": 407.14,
-    "changePct": 0.91,
-    "turnover": 6712.22892729,
-    "advances": 416,
-    "declines": 549,
-    "limitDown": 1
+    "close": 45832.62,
+    "change": 663.16,
+    "changePct": 1.47,
+    "turnover": 7769.56699657,
+    "advances": 816,
+    "declines": 188,
+    "limitDown": 0
   },
   "institutions": {
-    "foreign": -7.86583259,
-    "trust": -39.83977063,
-    "dealer": 0.60028122,
-    "total": -47.105322
+    "foreign": 365.98312109,
+    "trust": 48.55180879,
+    "dealer": 179.33721899,
+    "total": 593.87214887
   },
   "margin": {
     "balance": 5469.37698,
@@ -54,11 +54,11 @@
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-25T22:57:26.398Z",
+  "fetchedAt": "2026-08-26T09:08:01.691Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/08/26",
-      "fetchedAt": "2026-08-25T22:57:25.956Z"
+      "fetchedAt": "2026-08-26T09:08:01.285Z"
     },
     "margin": {
       "dataDate": "2026/08/25",
@@ -69,8 +69,8 @@
       "fetchedAt": "2026-08-25T13:57:58.137Z"
     },
     "market": {
-      "dataDate": "2026/08/25",
-      "fetchedAt": "2026-08-25T13:57:57.373Z"
+      "dataDate": "2026/08/26",
+      "fetchedAt": "2026-08-26T09:08:01.104Z"
     }
   }
 }
