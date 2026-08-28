@@ -19,25 +19,48 @@ function metaLine(data, key) {
   return `<span class="data-meta${stale ? " stale" : ""}">資料日 ${escapeHtml(meta.dataDate ?? "—")} · 取得 ${escapeHtml(acquired)}${stale ? " · 沿用舊值" : ""}</span>`;
 }
 
+const cleanDate = (value) => String(value ?? "").replace(/\D/g, "").slice(0, 8);
+const hasNumbers = (object, keys) => keys.every((key) => Number.isFinite(Number(object?.[key])));
+const signalLabel = (score) => score >= 4 ? "偏多" : score >= 1.5 ? "中性偏多" : score <= -4 ? "偏空" : score <= -1.5 ? "中性偏空" : "中性";
+
 function makeAnalysis(data) {
-  const m = data.market, i = data.institutions, mg = data.margin;
-  const sox = data.indices.find((item) => item.code === "SOX");
-  const nasdaq = data.indices.find((item) => item.code === "IXIC");
-  const verdict = m.changePct <= -2 && i.total < 0 ? "賣壓主導，短線風險偏高"
-    : m.changePct > 0 && i.foreign > 0 && i.trust > 0 ? "價格與法人同步偏多"
-    : i.foreign < 0 && i.trust > 0 ? "外資賣、投信承接，籌碼分歧"
-    : "訊號分歧，宜等待量價確認";
-  const breadth = m.declines > m.advances * 2
-    ? `下跌 ${m.declines} 家、上漲僅 ${m.advances} 家，弱勢並非少數權值股造成，而是市場普遍承壓。`
-    : `上漲 ${m.advances} 家、下跌 ${m.declines} 家，市場廣度${m.advances > m.declines ? "偏正向" : "略偏弱"}。`;
-  const chips = `外資${i.foreign >= 0 ? "買超" : "賣超"} ${number(Math.abs(i.foreign))} 億、投信${i.trust >= 0 ? "買超" : "賣超"} ${number(Math.abs(i.trust))} 億、自營商${i.dealer >= 0 ? "買超" : "賣超"} ${number(Math.abs(i.dealer))} 億；三大法人合計 ${signed(i.total, " 億")}。`;
-  const leverage = mg.change < 0
-    ? `融資餘額減少 ${number(Math.abs(mg.change))} 億，代表槓桿退出；有助清洗浮額，但也反映短線保守。`
-    : `融資餘額增加 ${number(mg.change)} 億；若股價沒有同步轉強，後續可能形成賣壓。`;
-  const overseas = sox?.change != null
-    ? `費半 ${signed(sox.pointChange, " 點")}（${signed(sox.change, "%")}）${nasdaq?.change != null ? `、NASDAQ ${signed(nasdaq.pointChange, " 點")}（${signed(nasdaq.change, "%")}）` : ""}，隔夜科技情緒${sox.change < 0 ? "偏空，台灣半導體開盤承壓機率較高" : "偏多，有利電子權值股情緒"}。`
-    : "美股數據暫未更新，先以台股法人與價格為主。";
-  return { verdict, items: [`加權指數 ${signed(m.change, " 點")}（${signed(m.changePct, "%")}），成交金額約 ${number(m.turnover)} 億。${breadth}`, chips, leverage, overseas] };
+  const m = data.market ?? {}, i = data.institutions ?? {}, mg = data.margin ?? {};
+  const marketDate = sourceMeta(data, "market").dataDate ?? data.date;
+  const institutionDate = sourceMeta(data, "institutions").dataDate ?? data.date;
+  const marginDate = sourceMeta(data, "margin").dataDate ?? data.date;
+  const usDate = sourceMeta(data, "us").dataDate ?? data.date;
+  const twComplete = hasNumbers(m, ["close", "changePct", "advances", "declines"]) && hasNumbers(i, ["foreign", "trust", "total"]) && hasNumbers(mg, ["balance", "change"]);
+  const usComplete = Array.isArray(data.indices) && ["SPX", "IXIC", "DJI", "SOX"].every((code) => hasNumbers(data.indices.find((item) => item.code === code), ["close", "change"]));
+  const twDatesAligned = [institutionDate, marginDate].every((date) => !cleanDate(date) || cleanDate(date) === cleanDate(marketDate));
+  const datesPaired = cleanDate(marketDate) && cleanDate(marketDate) === cleanDate(usDate);
+
+  let twScore = m.changePct >= 1 ? 2 : m.changePct > 0 ? 1 : m.changePct <= -1 ? -2 : m.changePct < 0 ? -1 : 0;
+  twScore += m.advances > m.declines * 1.2 ? 1 : m.declines > m.advances * 1.2 ? -1 : 0;
+  twScore += i.foreign > 0 ? 1 : i.foreign < 0 ? -1 : 0;
+  twScore += i.trust > 0 ? .5 : i.trust < 0 ? -.5 : 0;
+  twScore += i.total > 0 ? .5 : i.total < 0 ? -.5 : 0;
+  twScore += mg.change > 0 && m.changePct < 0 ? -.5 : mg.change < 0 && m.changePct > 0 ? .5 : 0;
+
+  const index = (code) => data.indices?.find((item) => item.code === code)?.change ?? 0;
+  const usScore = index("SPX") + index("DJI") * .5 + index("IXIC") * 1.2 + index("SOX") * 1.5;
+  const twReady = twComplete && twDatesAligned;
+  const usReady = usComplete;
+  const combinedReady = twReady && usReady && datesPaired;
+  const twLabel = twReady ? signalLabel(twScore) : "等待台股資料齊全";
+  const usLabel = usReady ? signalLabel(usScore) : "等待美股收盤";
+  const combinedScore = twScore * .8 + usScore * .6;
+  const combinedLabel = combinedReady ? signalLabel(combinedScore) : "等待台美資料配對";
+
+  return {
+    verdict: combinedLabel,
+    taiwan: { label: twLabel, ready: twReady, date: `台股交易日：${marketDate ?? "—"}`, status: twReady ? "資料完整" : "資料未齊或日期不一致", reasons: [`指數 ${signed(m.changePct, "%")}，市場廣度 ${m.advances ?? "—"} 漲／${m.declines ?? "—"} 跌`, `外資 ${signed(i.foreign, " 億")}、投信 ${signed(i.trust, " 億")}`, `融資變化 ${signed(mg.change, " 億")}`] },
+    us: { label: usLabel, ready: usReady, date: `美國交易日：${usDate ?? "—"}\n台灣時間次日清晨收盤`, status: usReady ? "四大指數資料完整" : "美股資料尚未完整", reasons: [`S&P 500 ${signed(index("SPX"), "%")}、道瓊 ${signed(index("DJI"), "%")}`, `NASDAQ ${signed(index("IXIC"), "%")}、費半 ${signed(index("SOX"), "%")}`, "NASDAQ 與費半對台股電子族群權重較高"] },
+    combined: { label: combinedLabel, ready: combinedReady, date: `分析組合：台股 ${marketDate ?? "—"} ＋ 美股 ${usDate ?? "—"}`, status: combinedReady ? "台美訊號已完成" : "尚未產生新綜合訊號", reasons: combinedReady ? [`台股訊號：${twLabel}`, `美股訊號：${usLabel}`, `綜合判讀：${signalLabel(combinedScore)}`] : [`台股：${twReady ? "已完成" : "等待完整盤後資料"}`, `美股：${usReady ? "已完成" : "等待四大指數收盤"}`, datesPaired ? "交易日期已配對" : "台美交易日期尚未配對"] }
+  };
+}
+
+function signalCard(title, signal, combined = false) {
+  return `<article class="signal-card${combined ? " combined" : ""}"><p>${title}</p><h3>${escapeHtml(signal.label)}</h3><span class="signal-date">${escapeHtml(signal.date)}</span><span class="signal-status${signal.ready ? "" : " waiting"}">${escapeHtml(signal.status)}</span><ul>${signal.reasons.map((reason) => `<li>${escapeHtml(reason)}</li>`).join("")}</ul></article>`;
 }
 
 function dataCard(label, value, sub, valueTone, meta) {
@@ -51,7 +74,7 @@ function render(data) {
   byId("data-status").textContent = "日結資料已更新";
   const updated = data.fetchedAt ? new Date(data.fetchedAt).toLocaleString("zh-TW", { timeZone: "Asia/Taipei", hour12: false }) : "—";
   byId("updated-at").textContent = `資料檔更新：${updated}`;
-  byId("analysis-list").innerHTML = analysis.items.map((text, index) => `<article><b>0${index + 1}</b><p>${text}</p></article>`).join("");
+  byId("signal-grid").innerHTML = [signalCard("TAIWAN SIGNAL｜台股訊號", analysis.taiwan), signalCard("US SIGNAL｜美股訊號", analysis.us), signalCard("COMBINED SIGNAL｜台美綜合", analysis.combined, true)].join("");
   const m = data.market, i = data.institutions, mg = data.margin;
   const marketMeta = metaLine(data, "market");
   const institutionMeta = metaLine(data, "institutions");
