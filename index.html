@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260821-2">
-  <script src="app.js?v=20260821-2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20260828-1">
+  <script src="app.js?v=20260828-1" defer></script>
 </head>
 <body>
   <main>
@@ -17,9 +17,9 @@
       <div class="topline"><span class="brand">籌碼日報</span><span>每日收盤後自動更新</span></div>
       <div class="hero-grid">
         <div>
-          <p class="eyebrow">TODAY'S MARKET VERDICT</p>
+          <p class="eyebrow">TAIWAN + US COMBINED SIGNAL</p>
           <h1 id="verdict">正在取得最新資料</h1>
-          <p class="intro">把當日價格、法人、融資與美股數字組合成今日市場判讀，直接呈現數據及其代表意義。</p>
+          <p class="intro">分開判讀台股與美股；兩邊收盤資料完整且交易日配對後，才產生台美綜合訊號。</p>
         </div>
         <aside class="outlook-card">
           <p>台股資料日期</p>
@@ -32,12 +32,14 @@
 
     <section class="container verdict-section">
       <div class="section-title">
-        <div><p class="eyebrow">01 / RESULT</p><h2>今日結果與理由</h2></div>
+        <div><p class="eyebrow">01 / SIGNALS</p><h2>台股、美股與綜合訊號</h2></div>
         <button class="refresh" id="refresh" type="button">重新讀取</button>
       </div>
       <p class="error-note" id="error" hidden></p>
-      <div class="analysis-list" id="analysis-list">
-        <article><b>—</b><p>資料載入後，這裡會直接顯示今日結論及形成原因。</p></article>
+      <div class="signal-grid" id="signal-grid">
+        <article class="signal-card"><p>TAIWAN SIGNAL</p><h3>正在讀取</h3></article>
+        <article class="signal-card"><p>US SIGNAL</p><h3>正在讀取</h3></article>
+        <article class="signal-card combined"><p>COMBINED SIGNAL</p><h3>等待兩邊資料</h3></article>
       </div>
     </section>
 
