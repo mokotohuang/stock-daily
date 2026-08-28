@@ -10,63 +10,63 @@
     "limitDown": 1
   },
   "institutions": {
-    "foreign": 490.94206617,
-    "trust": -14.50398707,
-    "dealer": 150.3517617,
-    "total": 626.7898408
+    "foreign": 417.54101187,
+    "trust": -1.965459,
+    "dealer": 42.70700165,
+    "total": 458.28255452
   },
   "margin": {
-    "balance": 5599.18784,
-    "change": 51.161989999999605,
-    "changePct": 0.9221656744804029
+    "balance": 5671.77536,
+    "change": 72.58752000000004,
+    "changePct": 1.2963937284161562
   },
   "indices": [
     {
       "name": "S&P 500",
       "code": "SPX",
-      "close": 7719.54,
-      "pointChange": 43.840000000000146,
-      "change": 0.5711531195851863,
+      "close": 7711.76,
+      "pointChange": -19.229999999999563,
+      "change": -0.24873916535915275,
       "note": "美國大盤風險偏好"
     },
     {
       "name": "NASDAQ",
       "code": "IXIC",
-      "close": 26466.002,
-      "pointChange": 335.8019999999997,
-      "change": 1.2851107148050902,
+      "close": 26402.424,
+      "pointChange": -138.92599999999948,
+      "change": -0.5234323046868358,
       "note": "科技與 AI 風險偏好"
     },
     {
       "name": "Dow Jones",
       "code": "DJI",
-      "close": 53554.47,
-      "pointChange": 90.59000000000378,
-      "change": 0.169441499569436,
+      "close": 53559.99,
+      "pointChange": -9.450000000004366,
+      "change": -0.01764065482111511,
       "note": "大型價值與景氣股"
     },
     {
       "name": "SOX 費半",
       "code": "SOX",
-      "close": 11777.855,
-      "pointChange": 166.61499999999978,
-      "change": 1.4349457939031471,
+      "close": 11469.662,
+      "pointChange": -412.5079999999998,
+      "change": -3.4716554299425084,
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-08-28T06:15:23.876Z",
+  "fetchedAt": "2026-08-28T20:15:51.472Z",
   "sources": {
     "institutions": {
-      "dataDate": "2026/08/28",
-      "fetchedAt": "2026-08-28T06:15:22.957Z"
+      "dataDate": "2026/08/29",
+      "fetchedAt": "2026-08-28T20:15:50.991Z"
     },
     "margin": {
-      "dataDate": "2026/08/27",
-      "fetchedAt": "2026-08-27T19:09:40.354Z"
+      "dataDate": "2026/08/28",
+      "fetchedAt": "2026-08-28T20:15:51.385Z"
     },
     "us": {
-      "dataDate": "2026/08/27",
-      "fetchedAt": "2026-08-27T19:09:40.497Z"
+      "dataDate": "2026/08/28",
+      "fetchedAt": "2026-08-28T20:15:51.472Z"
     },
     "market": {
       "dataDate": "2026/08/28",
