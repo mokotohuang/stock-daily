@@ -24,53 +24,53 @@
     {
       "name": "S&P 500",
       "code": "SPX",
-      "close": 7676.29,
-      "pointChange": 44.81999999999971,
-      "change": 0.587304936008393,
+      "close": 7729.93,
+      "pointChange": 63.32999999999993,
+      "change": 0.8260506613100973,
       "note": "美國大盤風險偏好"
     },
     {
       "name": "NASDAQ",
       "code": "IXIC",
-      "close": 26226.037,
-      "pointChange": 126.26699999999983,
-      "change": 0.4837858724425534,
+      "close": 26518.676,
+      "pointChange": 300.84599999999773,
+      "change": 1.147486271747119,
       "note": "科技與 AI 風險偏好"
     },
     {
       "name": "Dow Jones",
       "code": "DJI",
-      "close": 53079.71,
-      "pointChange": 312.83000000000175,
-      "change": 0.5928529410872914,
+      "close": 53587.88,
+      "pointChange": 525.9300000000003,
+      "change": 0.9911622169935337,
       "note": "大型價值與景氣股"
     },
     {
       "name": "SOX 費半",
       "code": "SOX",
-      "close": 11340.137,
-      "pointChange": 51.527000000000044,
-      "change": 0.45645123713194136,
+      "close": 11238.801,
+      "pointChange": -100.44900000000052,
+      "change": -0.8858522389046941,
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-09-03T12:54:07.531Z",
+  "fetchedAt": "2026-09-03T15:14:20.917Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/09/03",
-      "fetchedAt": "2026-09-03T12:54:07.257Z"
+      "fetchedAt": "2026-09-03T15:14:20.572Z"
     },
     "margin": {
       "dataDate": "2026/09/03",
-      "fetchedAt": "2026-09-03T12:54:07.440Z"
+      "fetchedAt": "2026-09-03T15:14:20.742Z"
     },
     "us": {
-      "dataDate": "2026/09/02",
-      "fetchedAt": "2026-09-02T15:21:10.800Z"
+      "dataDate": "2026/09/03",
+      "fetchedAt": "2026-09-03T15:14:20.917Z"
     },
     "market": {
       "dataDate": "2026/09/03",
-      "fetchedAt": "2026-09-03T12:54:05.950Z"
+      "fetchedAt": "2026-09-03T15:14:20.271Z"
     }
   }
 }
