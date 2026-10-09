@@ -2,11 +2,11 @@
   "symbol": "^TWII",
   "name": "臺灣加權指數",
   "price": 49313.44,
-  "previousClose": 49822.6,
-  "change": -509.1599999999962,
-  "changePct": -1.021945863925199,
+  "previousClose": 49806.4,
+  "change": -492.9599999999991,
+  "changePct": -0.9897523209868593,
   "quoteTime": "2026-10-08T05:31:15.000Z",
-  "fetchedAt": "2026-10-08T11:52:59.380Z",
+  "fetchedAt": "2026-10-09T07:05:28.902Z",
   "points": [
     {
       "time": 1791421200,
