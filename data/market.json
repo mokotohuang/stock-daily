@@ -1,76 +1,76 @@
 {
-  "date": "2026/11/02",
+  "date": "2026/11/03",
   "market": {
-    "close": 44920.14,
-    "change": -291.69,
-    "changePct": -0.65,
-    "turnover": 7184.96733715,
-    "advances": 518,
-    "declines": 447,
-    "limitDown": 5
+    "close": 43307.54,
+    "change": -1612.6,
+    "changePct": -3.59,
+    "turnover": 8529.63653279,
+    "advances": 58,
+    "declines": 1000,
+    "limitDown": 33
   },
   "institutions": {
-    "foreign": -735.20805132,
-    "trust": 338.15831633,
-    "dealer": -152.88142517,
-    "total": -549.93116016
+    "foreign": -1073.06720357,
+    "trust": 184.60158558,
+    "dealer": -590.54340555,
+    "total": -1479.00902354
   },
   "margin": {
-    "balance": 6226.99365,
-    "change": -7.685209999999643,
-    "changePct": -0.12326553095309938
+    "balance": 5997.74466,
+    "change": -229.24899000000005,
+    "changePct": -3.681535631564359
   },
   "indices": [
     {
       "name": "S&P 500",
       "code": "SPX",
-      "close": 7603.87,
-      "pointChange": 23.800000000000182,
-      "change": 0.3139812693022648,
+      "close": 7577.73,
+      "pointChange": 36.32999999999993,
+      "change": 0.4817407908345921,
       "note": "美國大盤風險偏好"
     },
     {
       "name": "NASDAQ",
       "code": "IXIC",
-      "close": 25482.7,
-      "pointChange": 45.70000000000073,
-      "change": 0.1796595510476893,
+      "close": 25379.072,
+      "pointChange": 214.7619999999988,
+      "change": 0.8534388584467398,
       "note": "科技與 AI 風險偏好"
     },
     {
       "name": "Dow Jones",
       "code": "DJI",
-      "close": 52274.49,
-      "pointChange": 504.1800000000003,
-      "change": 0.9738786574776167,
+      "close": 51854.69,
+      "pointChange": -129.29000000000087,
+      "change": -0.24871123757742455,
       "note": "大型價值與景氣股"
     },
     {
       "name": "SOX 費半",
       "code": "SOX",
-      "close": 10553.703,
-      "pointChange": -135.09699999999975,
-      "change": -1.2639117581019363,
+      "close": 10677.206,
+      "pointChange": 348.8760000000002,
+      "change": 3.3778548903840235,
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-11-03T03:39:27.501Z",
+  "fetchedAt": "2026-11-03T16:22:11.262Z",
   "sources": {
     "institutions": {
-      "dataDate": "2026/11/03",
-      "fetchedAt": "2026-11-03T03:39:26.992Z"
+      "dataDate": "2026/11/04",
+      "fetchedAt": "2026-11-03T16:22:10.696Z"
     },
     "margin": {
-      "dataDate": "2026/11/02",
-      "fetchedAt": "2026-11-02T18:35:20.983Z"
+      "dataDate": "2026/11/03",
+      "fetchedAt": "2026-11-03T16:22:10.983Z"
     },
     "us": {
-      "dataDate": "2026/11/02",
-      "fetchedAt": "2026-11-02T18:35:21.386Z"
+      "dataDate": "2026/11/03",
+      "fetchedAt": "2026-11-03T16:22:11.262Z"
     },
     "market": {
-      "dataDate": "2026/11/02",
-      "fetchedAt": "2026-11-02T18:35:20.543Z"
+      "dataDate": "2026/11/03",
+      "fetchedAt": "2026-11-03T16:22:10.293Z"
     }
   }
 }
