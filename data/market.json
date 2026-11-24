@@ -1,13 +1,13 @@
 {
-  "date": "2026/11/23",
+  "date": "2026/11/24",
   "market": {
-    "close": 36811.89,
-    "change": 778.6,
-    "changePct": 2.16,
-    "turnover": 9546.76870997,
-    "advances": 652,
-    "declines": 362,
-    "limitDown": 9
+    "close": 40122.35,
+    "change": 3310.46,
+    "changePct": 8.99,
+    "turnover": 2802.7827171,
+    "advances": 1053,
+    "declines": 26,
+    "limitDown": 4
   },
   "institutions": {
     "foreign": -289.47879995,
@@ -54,11 +54,11 @@
       "note": "台灣半導體供應鏈前導"
     }
   ],
-  "fetchedAt": "2026-11-24T00:44:01.283Z",
+  "fetchedAt": "2026-11-24T06:18:33.607Z",
   "sources": {
     "institutions": {
       "dataDate": "2026/11/24",
-      "fetchedAt": "2026-11-24T00:44:00.827Z"
+      "fetchedAt": "2026-11-24T06:18:33.016Z"
     },
     "margin": {
       "dataDate": "2026/11/23",
@@ -69,8 +69,8 @@
       "fetchedAt": "2026-11-23T20:24:25.085Z"
     },
     "market": {
-      "dataDate": "2026/11/23",
-      "fetchedAt": "2026-11-23T20:24:23.911Z"
+      "dataDate": "2026/11/24",
+      "fetchedAt": "2026-11-24T06:18:32.842Z"
     }
   }
 }
